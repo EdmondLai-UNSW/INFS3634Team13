@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">INFS2605 App</string>
+    <string name="title_home">Content</string>
+    <string name="title_dashboard">Quiz me</string>
+    <string name="title_notifications">Other</string>
+    <string name="title_activity_content_two">ContentTwo</string>
+    <string name="title_activity_content_three">ContentThree</string>
+    <string name="title_activity_content_four">ContentFour</string>
+    <string name="title_content">This is the content screen</string>
+    <string name="title_quiz">This is the quiz screen</string>
+    <string name="title_setting">This is the setting screen</string>
+
+</resources>
