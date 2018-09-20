@@ -25,7 +25,7 @@ import static android.provider.MediaStore.Video.Thumbnails.VIDEO_ID;
 public class Content_Revision extends AppCompatActivity {
 
 
-    public static final String API_KEY = "AIzaSyBpECPZC_6VaSfm4FHkpJtuUZAaQIHfc5w";
+    public static final String API_KEY = "???";
     public static final String Video_ID = "ZHLdVRXIuC8&index=19&t=0s&list=PLS1QulWo1RIbfTjQvTdj8Y6yyq4R7g-Al";
 
 
