@@ -15,8 +15,8 @@ import android.widget.Toast;
 public class FundamentalQuiz extends AppCompatActivity {
     //this is the actual quiz class (topic 1 - fundamental)
 
-    TextView mark;  //(SAME FOR OTHER TOPIC) display the current mark
-    TextView question;  ///(SAME FOR OTHER TOPIC) /display the current question
+    TextView mark;  // display the current mark
+    TextView question;  // /display the current question
     Button ansA;   //Button for mcq choice
     Button ansB;
     Button ansC;
@@ -43,88 +43,91 @@ public class FundamentalQuiz extends AppCompatActivity {
         question = findViewById(R.id.questionBox);
         quitBtn = findViewById(R.id.quitBtn);
         qno = findViewById(R.id.qno);
-
         ansA = findViewById(R.id.ansA);
         ansB = findViewById(R.id.ansB);
         ansC = findViewById(R.id.ansC);
         ansD = findViewById(R.id.ansD);
-        next = findViewById(R.id.next);
+        next = findViewById(R.id.next);  //above codes are just all set up
 
         result.setVisibility(View.INVISIBLE);
-        quitBtn.setVisibility(View.INVISIBLE);
+        quitBtn.setVisibility(View.INVISIBLE);  //result and return menu botton are set invisible until all 10 questions are answered
 
         mark.setText(Integer.toString(score));   //display default mark of 0, change to different values when user answer correct or wrong
 
-//unique xml string values file for each topic question
+         //unique xml string values file for each topic question
         String[] myArrayQuestion = getResources().getStringArray(R.array.fund_quiz_question);
         //unique xml string values file for each topic answer
         final String[] myArrayAnswer = getResources().getStringArray(R.array.fund_quiz_answer);
 
-        for (; questionNo <= 10; questionNo++) {
-            qno.setText(Integer.toString(questionNo));
-            next.setVisibility(View.INVISIBLE);
-            feedback.setText(" ");
-            mark.setText(Integer.toString(score));
+        for (; questionNo <= 10; questionNo++) {  ////****the problem is the loop finished itself when first started)
+            qno.setText(Integer.toString(questionNo));  //each round, update question number
+            next.setVisibility(View.INVISIBLE);   //each round begins, the next question bottom should be invisible
+            feedback.setText(" ");  //clear feedback textview when go to a new question
+            mark.setText(Integer.toString(score));  //update score
 
-
-            if (questionNo != 10) {
+            if (questionNo < 10) {    //if question number tracking is less than 10, run  the switch, otherwise run else if
                 switch (questionNo) {
                     case 1:
                         ////////need to do something to stop the loop until user click an answer
 
-                            question.setText(myArrayQuestion[0]);
-                            ansA.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                        question.setText(myArrayQuestion[0]);
+                        ansA.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
 
-                                    //correct answer + 10 marks
-                                    score = +10;
-                                    feedback.setText("Correct");
-                                    next.setVisibility(View.VISIBLE);
-
-                                }
-                            });
-
-                            ansB.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    //wrong answer 0 marks
-                                    feedback.setText(myArrayAnswer[0]);
-                                    next.setVisibility(View.VISIBLE);
-                                }
-                            });
-                            ansC.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    ///wrong answer 0 marks
-                                    feedback.setText(myArrayAnswer[0]);
-                                    next.setVisibility(View.VISIBLE);
-                                }
-                            });
-                            ansD.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    ///wrong answer 0 marks
-                                    feedback.setText(myArrayAnswer[0]);
-                                    next.setVisibility(View.VISIBLE);
-                                }
-                            });
-
-                        break; //end of case 1
+                                //correct answer + 10 marks
+                                score = +10;
+                                feedback.setText("Correct");
+                                next.setVisibility(View.VISIBLE);
 
 
-                }//end of switch statement
-            }//end of if section of the if-else statment
+                            }
+                        });
 
+
+                ;
+
+
+            ansB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //wrong answer 0 marks
+                    feedback.setText(myArrayAnswer[0]);
+                    next.setVisibility(View.VISIBLE);
+                }
+            });
+            ansC.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    ///wrong answer 0 marks
+                    feedback.setText(myArrayAnswer[0]);
+                    next.setVisibility(View.VISIBLE);
+                }
+            });
+            ansD.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    ///wrong answer 0 marks
+                    feedback.setText(myArrayAnswer[0]);
+                    next.setVisibility(View.VISIBLE);
+                }
+            });
+
+            break; //end of case 1
+
+
+        }//end of switch statement
+    }//end of if section of the if-else statment
+
+            //when all ten questions been answered
             else {
                 result.setVisibility(View.VISIBLE);
                 quitBtn.setVisibility(View.VISIBLE);
                 if (score < 50)
                     question.setText("Your total mark is " + score + ". FAIL");
-
                 else if (score < 65) {
                     question.setText("Your total mark is " + score + ". PASS");
                 } else if (score < 75) {
@@ -132,13 +135,10 @@ public class FundamentalQuiz extends AppCompatActivity {
                 } else if (score < 85)
                     question.setText("Your total mark is " + score + ". Distinction");
                 else if (score < 100)
-
                     question.setText("Your total mark is " + score + ". High Distinction");
 
                 else question.setText("You have scored an HD faultless.");
 
-
-                // quitBtn.setVisibility(View.VISIBLE);
                 quitBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -150,12 +150,13 @@ public class FundamentalQuiz extends AppCompatActivity {
             }
 
         }
-        //each time user answer a question, show them which question they are on and update the score
+
 
 
     }
 
-    //dont tamper code below
+
+    //dont tamper code below unless for the pop up warning 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
